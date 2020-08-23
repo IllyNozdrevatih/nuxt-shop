@@ -1,5 +1,9 @@
 
 export default {
+  server: {
+    port: 8080, // default: 3000
+    host: 'localhost' // default: localhost
+  },
   /*
   ** Nuxt rendering mode
   ** See https://nuxtjs.org/api/configuration-mode
@@ -30,6 +34,7 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
+    {src: '~/plugins/vue-google-oauth2', ssr: false},
   ],
   /*
   ** Nuxt.js dev-modules
@@ -50,7 +55,9 @@ export default {
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
   */
-  axios: {},
+  axios: {
+    baseURL: 'http://localhost:8081/'
+  },
   /*
   ** Build configuration
   ** See https://nuxtjs.org/api/configuration-build/
