@@ -45,5 +45,11 @@ import Card from '~/components/Card'
 
 export default {
   name: 'HomePage',
+  
+  // async fetch({store}) {
+  //   if (store.getters['users/users'].length === 0) {
+  //     await store.dispatch('users/auth')
+  //   }
+  // },
 }
 </script>

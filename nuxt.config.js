@@ -56,7 +56,12 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    baseURL: 'http://localhost:8081/'
+    baseURL: 'http://localhost:8081/',
+    withCredentials: true
+    // credentials: true,
+    // init(axios) {
+    //   axios.defaults.withCredentials = true
+    // }
   },
   /*
   ** Build configuration

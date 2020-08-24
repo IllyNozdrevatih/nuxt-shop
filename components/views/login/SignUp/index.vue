@@ -14,37 +14,43 @@
 export default {
     methods: {
         async handleClickUpdateScope() {
-        const option = new window.gapi.auth2.SigninOptionsBuilder();
-        option.setScope("email https://www.googleapis.com/auth/drive.file");
-        const googleUser = this.$gAuth.GoogleAuth.currentUser.get();
-        try {
-            await googleUser.grant(option);
-            console.log("success");
-        } catch (error) {
-            console.error(error);
-        }
+            const option = new window.gapi.auth2.SigninOptionsBuilder();
+            option.setScope("email https://www.googleapis.com/auth/drive.file");
+            const googleUser = this.$gAuth.GoogleAuth.currentUser.get();
+            try {
+                await googleUser.grant(option);
+                console.log("success");
+            } catch (error) {
+                console.error(error);
+            }
         },
-        handleClickLogin() {
-        this.$gAuth
-            .getAuthCode()
-            .then((authCode) => {
-            //on success
-            console.log("authCode", authCode);
-            })
-            .catch((error) => {
-            //on fail do something
-            });
+            handleClickLogin() {
+            this.$gAuth
+                .getAuthCode()
+                .then((authCode) => {
+                //on success
+                console.log("authCode", authCode);
+                })
+                .catch((error) => {
+                //on fail do something
+                });
         },
-        async handleClickSignIn() {
+        async handleClickSignIn({store}) {
             try {
                 this.$nuxt.$loading.start()
                 const googleUser = await this.$gAuth.signIn();
                 if (!googleUser) {
-                return null;
+                    return null;
                 }
                 // console.log("googleUser", googleUser);
                 // console.log("getId", googleUser.getId());
-                console.log("getBasicProfile", googleUser.getBasicProfile().$t);
+                const obj = {
+                    email: googleUser.getBasicProfile().$t
+                } 
+                // console.log("getBasicProfile", googleUser.getBasicProfile().$t);
+                 
+                await this.$store.dispatch('users/create', obj)
+
                 // console.log("getAuthResponse", googleUser.getAuthResponse());
                 // console.log(
                 // "getAuthResponse",

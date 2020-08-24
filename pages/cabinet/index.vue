@@ -4,7 +4,8 @@
 
 <script>
 export default {
-  layout: 'logged',
+  layout: 'logged',  
+  middleware: 'auth'
 }
 </script>
 
