@@ -44,7 +44,8 @@ export default {
   /*
   ** Nuxt.js modules
   */
-  modules: [
+  modules: [    
+    'cookie-universal-nuxt',
     // Doc: https://buefy.github.io/#/documentation
     'nuxt-buefy',
     // Doc: https://axios.nuxtjs.org/usage
@@ -57,11 +58,11 @@ export default {
   */
   axios: {
     baseURL: 'http://localhost:8081/',
-    withCredentials: true
-    // credentials: true,
-    // init(axios) {
-    //   axios.defaults.withCredentials = true
-    // }
+    withCredentials: true,
+    credentials: true,
+    init(axios) {
+      axios.defaults.withCredentials = true
+    }
   },
   /*
   ** Build configuration

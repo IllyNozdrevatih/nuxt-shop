@@ -27,15 +27,18 @@ export const actions = {
             const auth = await this.$axios.$get('auth/send-temp-pass', {
                 params: {
                     email: obj.email,
-                    password: 'password'
+                    password: password
                 }
             })
+
             const res = await this.$axios.$post('auth/login', {
                 username: obj.email,
-                password: 'password'
+                password: password
             })
 
-            commit('setAuth', res)
+            const ress = await this.$axios.$get('auth/check')
+
+            commit('setAuth', ress)
         } catch (e) {
             console.log(e);
             commit('setAuth', false)
