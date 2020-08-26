@@ -48,7 +48,7 @@ export default {
   
   // async fetch({store}) {
   //   if (store.getters['users/users'].length === 0) {
-  //     await store.dispatch('users/auth')
+  //     await store.dispatch('users/checkAuth')
   //   }
   // },
 }

@@ -34,7 +34,9 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
-    {src: '~/plugins/vue-google-oauth2', ssr: false},
+    { src: '~/plugins/localStorage.js', ssr: false },
+    { src: '~/plugins/vue-google-oauth2', ssr: false},
+    // { src: '~/plugins/vuex-persist', ssr: false }
   ],
   /*
   ** Nuxt.js dev-modules

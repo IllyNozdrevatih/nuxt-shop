@@ -1,6 +1,7 @@
 
 import Vue from 'vue'
 
+
 export const state = () => ({
     users: [],
     isAuth: false
@@ -24,21 +25,19 @@ export const actions = {
     async create({commit}, obj) {
         const password = generatePassword(8)
         try {
-            const auth = await this.$axios.$get('auth/send-temp-pass', {
-                params: {
-                    email: obj.email,
-                    password: password
-                }
-            })
+            // await this.$axios.$get('auth/send-temp-pass', {
+            //     params: {
+            //         email: obj.email,
+            //         password: password
+            //     }
+            // })
 
             const res = await this.$axios.$post('auth/login', {
-                username: obj.email,
-                password: password
+                username: 'test',
+                password: 'test'
             })
-
-            const ress = await this.$axios.$get('auth/check')
-
-            commit('setAuth', ress)
+            
+            commit('setAuth', true)
         } catch (e) {
             console.log(e);
             commit('setAuth', false)
@@ -49,6 +48,7 @@ export const actions = {
     async logout({commit}) {
         try {
             await this.$axios.$get('auth/logout')
+            console.log('logout');
             commit('setAuth', false)
         } catch (e) {
             console.log(e);
@@ -57,13 +57,16 @@ export const actions = {
     },
     async checkAuth({commit}) {
         try {
-            const res = await this.$axios.$get('auth/check')
-            commit('setAuth', res)
+            await this.$axios.$get('auth/check')
+            commit('setAuth', true)
         } catch (e) {
-            console.log(e);
+            await this.$axios.$get('auth/check')
+            
+            commit('setAuth', false)
             return false
         }
     },
+    
 }
 
 export const getters = {
