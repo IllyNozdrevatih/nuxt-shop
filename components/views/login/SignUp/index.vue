@@ -21,7 +21,7 @@ export default {
     computed: {
         user() {
             return {                
-                email: this.email,
+                username: this.email,
                 password: this.password
             }
         }
@@ -30,10 +30,14 @@ export default {
         async login(){
             try {
                 this.$nuxt.$loading.start()
-                const res =  await this.$store.dispatch('users/login', this.user)
+                console.log('login');
+                const res =  await this.$auth.loginWith('local', {
+                    data: this.user
+                })
+                console.log('login 2');
                 console.log('res', res);
                 this.$nuxt.$loading.finish()
-                if(res) this.$router.push('cabinet')
+                if(res) this.$router.push('')
             } catch (e){
                 this.$nuxt.$loading.finish()
                 console.log(e);

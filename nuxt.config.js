@@ -34,7 +34,7 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
-    { src: '~/plugins/localStorage.js', ssr: false },
+    // { src: '~/plugins/localStorage.js', ssr: false },
     { src: '~/plugins/vue-google-oauth2', ssr: false},
     // { src: '~/plugins/vuex-persist', ssr: false }
   ],
@@ -53,18 +53,34 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
+    '@nuxtjs/auth'
   ],
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: '/auth/login', method: 'post' },
+          logout: { url: '/auth/logout', method: 'get' },
+          user: { url: '/auth/user', method: 'get', propertyName: 'user' }
+        },
+        tokenRequired: false,
+        tokenType: false
+      }
+    },
+    localStorage: false,
+    cookie: false
+  },
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
     baseURL: 'http://localhost:8081/',
-    withCredentials: true,
+    // withCredentials: true,
     credentials: true,
-    init(axios) {
-      axios.defaults.withCredentials = true
-    }
+    // init(axios) {
+    //   axios.defaults.withCredentials = true
+    // }
   },
   /*
   ** Build configuration

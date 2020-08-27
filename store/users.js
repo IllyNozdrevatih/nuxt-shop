@@ -22,6 +22,7 @@ export const actions = {
         // console.log('users', users);
         commit('setUsers', users)
     },
+    // Auth
     async create({commit, dispatch}, obj) {
         const password = obj.password ? obj.password : generatePassword(8)
         try {
@@ -45,8 +46,7 @@ export const actions = {
             return false
         }
     },
-    async login({commit, dispatch}, obj){
-        console.log('obj', obj);
+    async login({commit}, obj){
         try {
             const res = await this.$axios.$post('auth/login', {
                 username: obj.email,
@@ -60,29 +60,15 @@ export const actions = {
             return false
         }
     },
-    // Auth
     async logout({commit}) {
         try {
             await this.$axios.$get('auth/logout')
-            console.log('logout');
             commit('setAuth', false)
         } catch (e) {
             console.log(e);
             return false
         }
-    },
-    async checkAuth({commit}) {
-        try {
-            await this.$axios.$get('auth/check')
-            commit('setAuth', true)
-        } catch (e) {
-            await this.$axios.$get('auth/check')
-            
-            commit('setAuth', false)
-            return false
-        }
-    },
-    
+    }    
 }
 
 export const getters = {

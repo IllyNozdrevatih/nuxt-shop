@@ -1,29 +1,33 @@
 <template>
     <b-navbar-item tag="div">
         <div class="buttons">
-            <template v-if="$cookies.get('vuex')">
-                <template v-if="$cookies.get('vuex').users.isAuth">
+            <!-- <template v-if="$cookies.get('vuex')"> -->
+                <!-- <template v-if="$cookies.get('vuex').users.isAuth"> -->
+                <template v-if="$auth.loggedIn">
                     <button @click="logout" class="button is-primary">
                         <strong>Log out</strong>
                     </button>
                 </template>
-                <template v-if="!$cookies.get('vuex').users.isAuth">
+                <!-- </template> -->
+                <!-- <template v-if="!$cookies.get('vuex').users.isAuth"> -->
                     <!-- <nuxt-link  to="/login/sign" class="button is-primary">
                         <strong>Sign up</strong>
                     </nuxt-link> -->
+                <template v-if="!$auth.loggedIn">
                     <nuxt-link  to="/login" class="button is-primary">
                         <strong>Log in</strong>
                     </nuxt-link>
                 </template>
-            </template>
-            <template v-if="!$cookies.get('vuex')">
+                <!-- </template> -->
+            <!-- </template> -->
+            <!-- <template v-if="!$cookies.get('vuex')"> -->
                 <!-- <nuxt-link  to="/login/sign" class="button is-primary">
                     <strong>Sign up</strong>
                 </nuxt-link> -->
-                <nuxt-link  to="/login" class="button is-primary">
+                <!-- <nuxt-link  to="/login" class="button is-primary">
                     <strong>Log in</strong>
-                </nuxt-link>
-            </template>
+                </nuxt-link> -->
+            <!-- </template> -->
         </div>
     </b-navbar-item>
 </template>
@@ -32,7 +36,8 @@ export default {
     methods: {
         async logout(){
             try {
-                await this.$store.dispatch('users/logout')
+                // await this.$store.dispatch('users/logout')
+                 await this.$auth.logout('local')
                 this.$router.push('/')
             } catch (e){
                 console.log(e);
