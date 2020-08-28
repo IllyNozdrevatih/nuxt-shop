@@ -7,7 +7,7 @@ export const mutations = {
     setUsers(state, users) {
         state.users = users
     },
-    setAuth(state, auth) {
+    setUserAuth(state, auth) {
         state.isAuth = auth
     },
 }
@@ -23,13 +23,14 @@ export const actions = {
         const password = obj.password ? obj.password : generatePassword(8)
         try {
             const user =  {
-                email: obj.email,                
+                username: obj.username,                
                 password: password
             }
-
+            
+            console.log('obj', obj);
             await this.$axios.$get('auth/send-temp-pass', {
                 params: {
-                    email: obj.email,                
+                    username: obj.username,                
                     password: password
                 }
             })
@@ -38,28 +39,28 @@ export const actions = {
             return true
         } catch (e) {
             console.log(e);
-            commit('setAuth', false)
+            commit('setUserAuth', false)
             return false
         }
     },
     async login({commit}, obj){
         try {
             const res = await this.$axios.$post('auth/login', {
-                username: obj.email,
+                username: obj.username,
                 password: obj.password
             })
-            commit('setAuth', true)
+            commit('setUserAuth', true)
             return true
         } catch (e) {
             console.log(e);
-            commit('setAuth', false)
+            commit('setUserAuth', false)
             return false
         }
     },
     async logout({commit}) {
         try {
             await this.$axios.$get('auth/logout')
-            commit('setAuth', false)
+            commit('setUserAuth', false)
         } catch (e) {
             console.log(e);
             return false

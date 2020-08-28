@@ -2,10 +2,10 @@
     <div>
         <b-tabs type="is-toggle"  expanded>
             <b-tab-item label="Sign up" icon="login-variant" >
-                <loged/>
+                <auth-form :create="true"/>   
             </b-tab-item>
             <b-tab-item label="Log in" icon="login">     
-                <sign-up/>   
+                <auth-form :create="false"/>
             </b-tab-item>
             <b-tab-item label="Loged by" icon="group">     
                 <loged-by/>
@@ -18,10 +18,11 @@
 import SignUp from './SignUp'
 import Loged from './Loged'
 import LogedBy from './LogedBy'
+import AuthForm from './AuthForm'
 
 export default {
     components: {
-        SignUp, Loged, LogedBy
+        SignUp, Loged, LogedBy, AuthForm
     }
 }
 </script>

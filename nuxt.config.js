@@ -28,6 +28,7 @@ export default {
   ** Global CSS
   */
   css: [
+    '@/assets/scss/main.scss'
   ],
   /*
   ** Plugins to load before mounting the App
@@ -48,6 +49,7 @@ export default {
   */
   modules: [    
     'cookie-universal-nuxt',
+    '@nuxtjs/style-resources',
     // Doc: https://buefy.github.io/#/documentation
     'nuxt-buefy',
     // Doc: https://axios.nuxtjs.org/usage
@@ -80,11 +82,16 @@ export default {
   */
   axios: {
     baseURL: 'http://localhost:8081/',
-    // withCredentials: true,
+    withCredentials: true,
     credentials: true,
-    // init(axios) {
-    //   axios.defaults.withCredentials = true
-    // }
+    init(axios) {
+      axios.defaults.withCredentials = true
+    }
+  },
+  styleResources: {
+    scss: [
+        '~/assets/scss/main.scss',
+    ]
   },
   /*
   ** Build configuration

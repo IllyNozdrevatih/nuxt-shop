@@ -8,6 +8,11 @@ export const getters = {
   }    
 }
 
+export const actions = {
+  setAuth({commit}, val){
+    commit('setAuth', val)
+  }
+}
 
 export const state = () => ({
   isAuth: false
