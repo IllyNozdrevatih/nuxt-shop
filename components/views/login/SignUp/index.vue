@@ -30,14 +30,13 @@ export default {
         async login(){
             try {
                 this.$nuxt.$loading.start()
-                console.log('login');
+                this.$store.commit('setAuth', true)
+
                 const res =  await this.$auth.loginWith('local', {
                     data: this.user
                 })
-                console.log('login 2');
-                console.log('res', res);
                 this.$nuxt.$loading.finish()
-                if(res) this.$router.push('')
+                if(res) this.$router.push('cabinet')
             } catch (e){
                 this.$nuxt.$loading.finish()
                 console.log(e);

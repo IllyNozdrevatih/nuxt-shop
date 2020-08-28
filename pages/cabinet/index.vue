@@ -6,7 +6,7 @@
 <script>
 export default {
   layout: 'logged',  
-  middleware: 'auth',
+  // middleware: 'auth',
 }
 </script>
 

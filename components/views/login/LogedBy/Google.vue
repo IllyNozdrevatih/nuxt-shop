@@ -30,20 +30,22 @@ export default {
         async handleClickSignIn({store}) {
             try {
                 this.$nuxt.$loading.start()
-                const googleUser = await this.$gAuth.signIn();
-                if (!googleUser) {
-                    return null;
-                }
+                this.$auth.loginWith('google')
+
+                // const googleUser = await this.$gAuth.signIn();
+                // if (!googleUser) {
+                //     return null;
+                // }
                 
-                const obj = {
-                    email: googleUser.getBasicProfile().$t
-                } 
+                // const obj = {
+                //     email: googleUser.getBasicProfile().$t
+                // } 
                  
-                const res = await this.$store.dispatch('users/create', obj)
+                // const res = await this.$store.dispatch('users/create', obj)
 
                 
                 this.$nuxt.$loading.finish()
-                if(res) this.$router.push('cabinet')
+                this.$router.push('cabinet')
             } catch (error) {
                 //on fail do something
                 console.error(error);

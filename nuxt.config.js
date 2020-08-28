@@ -36,7 +36,7 @@ export default {
   plugins: [
     // { src: '~/plugins/localStorage.js', ssr: false },
     { src: '~/plugins/vue-google-oauth2', ssr: false},
-    // { src: '~/plugins/vuex-persist', ssr: false }
+    { src: '~/plugins/vuex-persist', ssr: false }
   ],
   /*
   ** Nuxt.js dev-modules
@@ -56,6 +56,9 @@ export default {
     '@nuxtjs/auth'
   ],
   auth: {
+    redirect: {
+      home: false
+    },
     strategies: {
       local: {
         endpoints: {
@@ -67,8 +70,9 @@ export default {
         tokenType: false
       }
     },
-    localStorage: false,
-    cookie: false
+    // autoFetchUser: false,
+    // localStorage: false,
+    // cookie: false
   },
   /*
   ** Axios module configuration
