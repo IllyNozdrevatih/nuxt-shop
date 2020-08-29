@@ -20,8 +20,8 @@ export default {
         async logout(){
             try {
                 await this.$store.dispatch('users/logout')
-                
-                    this.$store.dispatch('setAuth', false)
+
+                this.$store.dispatch('setAuth', false)
                 await this.$auth.logout()
 
                 this.$router.push('/')
