@@ -15,14 +15,12 @@
 </template>
 
 <script>
-import SignUp from './SignUp'
-import Loged from './Loged'
 import LogedBy from './LogedBy'
 import AuthForm from './AuthForm'
 
 export default {
     components: {
-        SignUp, Loged, LogedBy, AuthForm
+        LogedBy, AuthForm
     }
 }
 </script>
